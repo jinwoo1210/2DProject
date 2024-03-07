@@ -1,9 +1,11 @@
-using UnityEngine;
-
 public class GameManager : Singleton<GameManager>
 {
-    public void Test()
+    public static GameManager instance;
+
+    public Player player;
+
+    protected override void Awake()
     {
-        Debug.Log(GetInstanceID());
+        instance = this;
     }
 }
