@@ -1,10 +1,14 @@
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class Reposition : MonoBehaviour
 {
+    private new Collider2D  collider;
+
+    private void Awake()
+    {
+        collider = GetComponent<Collider2D>();
+    }
+
     private void OnTriggerExit2D(Collider2D collision)
     {
         if (!collision.CompareTag("Area"))
@@ -19,8 +23,8 @@ public class Reposition : MonoBehaviour
 
                 float diffX = (playerPos.x - myPos.x);
                 float diffY = (playerPos.y - myPos.y);
-                float dirX = diffX< 0 ? -1 : 1;               
-                float dirY = diffY< 0 ? -1 : 1;
+                float dirX = diffX < 0 ? -1 : 1;
+                float dirY = diffY < 0 ? -1 : 1;
                 diffX = Mathf.Abs(diffX);
                 diffY = Mathf.Abs(diffY);
 
@@ -32,10 +36,17 @@ public class Reposition : MonoBehaviour
                 else if (diffX < diffY)
                 {
                     Debug.Log("bbb");
-                    transform.Translate(Vector3.up* dirY * 32);
+                    transform.Translate(Vector3.up * dirY * 32);
                 }
                 break;
-            case "Enemy":
+            case "Monster":
+                if (collider.enabled)
+                {
+                    Vector3 dist = playerPos - myPos;
+                    Vector3 rand = new Vector3(Random.Range(-3f, 3f), Random.Range(-3f, 3f), 0f);
+                    transform.Translate(rand + dist * 2);
+                }
+
                 break;
         }
     }
