@@ -4,8 +4,13 @@ public class Reposition : MonoBehaviour
 {
     private new Collider2D  collider;
 
+    [SerializeField]
+    private Transform pos;
+
+
     private void Awake()
     {
+        Debug.Log($"{gameObject.name} : {transform.position}");
         collider = GetComponent<Collider2D>();
     }
 
@@ -15,7 +20,7 @@ public class Reposition : MonoBehaviour
             return;
 
         Vector3 playerPos = GameManager.instance.player.transform.position;
-        Vector3 myPos = transform.position;
+        Vector3 myPos = pos.position;
 
         switch (transform.tag)
         {
@@ -23,6 +28,8 @@ public class Reposition : MonoBehaviour
 
                 float diffX = (playerPos.x - myPos.x);
                 float diffY = (playerPos.y - myPos.y);
+                Debug.Log($"{gameObject.name} : X = {diffX}, Y = {diffY}");
+                Debug.Log($"{playerPos}");
                 float dirX = diffX < 0 ? -1 : 1;
                 float dirY = diffY < 0 ? -1 : 1;
                 diffX = Mathf.Abs(diffX);
