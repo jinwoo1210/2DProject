@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem.Processors;
 using static Spawner;
 
 public class Monster : MonoBehaviour
@@ -57,6 +58,27 @@ public class Monster : MonoBehaviour
         speed = data.speed;
         maxHp = data.hp;
         hp = data.hp;
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (!collision.CompareTag("Bullet"))
+            return;
+        hp -= collision.GetComponent<Bullet>().damage;
+
+        if (hp > 0)
+        {
+
+        }
+        else
+        {
+            Dead();
+        }
+    }
+
+    private void Dead()
+    {
+        gameObject.SetActive(false);
     }
 
 }

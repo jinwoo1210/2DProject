@@ -17,7 +17,7 @@ public class PoolManager : Singleton<PoolManager>
             pools[i] = new List<GameObject>();
         }
 
-        Debug.Log(pools.Length);
+        //Debug.Log(pools.Length);
     }
 
     public GameObject Get(int index)    // Get 함수 생성
