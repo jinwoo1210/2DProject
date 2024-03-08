@@ -10,7 +10,7 @@ public class Reposition : MonoBehaviour
 
     private void Awake()
     {
-        Debug.Log($"{gameObject.name} : {transform.position}");
+        //Debug.Log($"{gameObject.name} : {transform.position}");
         collider = GetComponent<Collider2D>();
     }
 
@@ -28,8 +28,8 @@ public class Reposition : MonoBehaviour
 
                 float diffX = (playerPos.x - myPos.x);
                 float diffY = (playerPos.y - myPos.y);
-                Debug.Log($"{gameObject.name} : X = {diffX}, Y = {diffY}");
-                Debug.Log($"{playerPos}");
+                //Debug.Log($"{gameObject.name} : X = {diffX}, Y = {diffY}");
+                //Debug.Log($"{playerPos}");
                 float dirX = diffX < 0 ? -1 : 1;
                 float dirY = diffY < 0 ? -1 : 1;
                 diffX = Mathf.Abs(diffX);
@@ -37,12 +37,12 @@ public class Reposition : MonoBehaviour
 
                 if (diffX > diffY)
                 {
-                    Debug.Log("aaa");
+                    //Debug.Log("aaa");
                     transform.Translate(Vector3.right * dirX * 32); //Ground의 2배 이동해야해서 16 * 2
                 }
                 else if (diffX < diffY)
                 {
-                    Debug.Log("bbb");
+                    //Debug.Log("bbb");
                     transform.Translate(Vector3.up * dirY * 32);
                 }
                 break;

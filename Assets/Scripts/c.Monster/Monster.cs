@@ -1,20 +1,27 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static Spawner;
 
 public class Monster : MonoBehaviour
 {
     public float speed;
+    public float hp;
+    public float maxHp;
+    public RuntimeAnimatorController[] animCon;
     public Rigidbody2D target;
 
-    bool isLive = true;
+    bool isLive;
 
-    Rigidbody2D rigid;
-    SpriteRenderer spriter;
+    private Rigidbody2D rigid;
+    Animator anim;
+    private SpriteRenderer spriter;
 
     private void Awake()
     {
         rigid = GetComponent<Rigidbody2D>();
+        anim = GetComponent<Animator>();
         spriter = GetComponent<SpriteRenderer>();
     }
 
@@ -40,6 +47,16 @@ public class Monster : MonoBehaviour
     private void OnEnable()
     {
         target = GameManager.instance.player.GetComponent<Rigidbody2D>();
+        isLive = true;
+        hp = maxHp;
+    }
+
+    public void Init(SpawnData data)
+    {
+        anim.runtimeAnimatorController = animCon[data.spriteType];
+        speed = data.speed;
+        maxHp = data.hp;
+        hp = data.hp;
     }
 
 }
