@@ -3,6 +3,49 @@ using UnityEngine;
 
 public class PoolManager : Singleton<PoolManager>
 {
+    // 프리팹을 보관할 변수
+    public GameObject[] prefab;
+    // 풀 담당을 하는 리스트
+    List<GameObject>[] pools;
+
+    protected override void Awake()
+    {
+        pools = new List<GameObject>[prefab.Length];
+
+        for(int i = 0; i < pools.Length; i++)
+        {
+            pools[i] = new List<GameObject>();
+        }
+
+        Debug.Log(pools.Length);
+    }
+
+    public GameObject Get(int index)    // Get 함수 생성
+    {
+        GameObject select = null;
+
+        // 선택한 풀의 게임오브젝트  접근 
+
+        foreach (GameObject item in pools[index])
+        {
+            if (!item.activeSelf)
+            {
+                select = item;
+                select.SetActive(true);
+                break;
+            }
+
+        }
+
+        if (!select) // 못찾았을 때
+        {
+            select = Instantiate(prefab[index], transform);     // 새롭게 생성하고 select 변수에 할당
+            pools[index].Add(select);
+        }
+        
+        return select;
+    }
+
     private Dictionary<int, ObjectPool> poolDic = new Dictionary<int, ObjectPool>();
 
     public void CreatePool(PooledObject prefab, int size, int capacity)
