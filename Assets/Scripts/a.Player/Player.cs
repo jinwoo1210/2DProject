@@ -7,6 +7,7 @@ public class Player : MonoBehaviour
 {
     [SerializeField] Rigidbody2D rigid;
     public float speed;
+    public Scanner scanner;
 
     public Vector2 moveDir;
     SpriteRenderer sprite;
@@ -19,6 +20,7 @@ public class Player : MonoBehaviour
         rigid = GetComponent<Rigidbody2D>();
         sprite = GetComponent<SpriteRenderer>();
         animator = GetComponent<Animator>();
+        scanner = GetComponent<Scanner>();
     }
 
     private void OnMove(InputValue value)
