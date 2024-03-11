@@ -20,13 +20,13 @@ public class PoolManager : Singleton<PoolManager>
         //Debug.Log(pools.Length);
     }
 
-    public GameObject Get(int index)    // Get 함수 생성
+    public GameObject Get(int i)    // Get 함수 생성
     {
         GameObject select = null;
 
         // 선택한 풀의 게임오브젝트  접근 
 
-        foreach (GameObject item in pools[index])
+        foreach (GameObject item in pools[i])
         {
             if (!item.activeSelf)
             {
@@ -39,8 +39,8 @@ public class PoolManager : Singleton<PoolManager>
 
         if (!select) // 못찾았을 때
         {
-            select = Instantiate(prefab[index], transform);     // 새롭게 생성하고 select 변수에 할당
-            pools[index].Add(select);
+            select = Instantiate(prefab[i], transform);     // 새롭게 생성하고 select 변수에 할당
+            pools[i].Add(select);
         }
         
         return select;
