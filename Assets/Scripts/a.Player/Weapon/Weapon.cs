@@ -49,6 +49,7 @@ public class Weapon : MonoBehaviour
         if (id == 0)
         {
             Batch();
+            player.BroadcastMessage("ApplyGear", SendMessageOptions.DontRequireReceiver);
         }
     }
 
@@ -66,7 +67,7 @@ public class Weapon : MonoBehaviour
 
         for (int i = 0; i < GameManager.instance.pool.prefabs.Length; i++)
         {
-            if(data.projectile == GameManager.instance.pool.prefabs[i])
+            if (data.projectile == GameManager.instance.pool.prefabs[i])
             {
                 prefabId = i;
                 break;
@@ -81,10 +82,9 @@ public class Weapon : MonoBehaviour
                 break;
             default:
                 speed = 0.4f;
-
                 break;
-
         }
+        player.BroadcastMessage("ApplyGear", SendMessageOptions.DontRequireReceiver);
     }
 
     public void Batch()
