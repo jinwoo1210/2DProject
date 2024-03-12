@@ -24,10 +24,6 @@ public class Spawner : MonoBehaviour
         {
             timer = 0;
             Spawn();
-            //if (level >= 2)
-            //{
-            //    level = 1;
-            //}
         }
     }
 
