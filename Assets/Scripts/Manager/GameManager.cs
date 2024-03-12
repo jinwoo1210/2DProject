@@ -6,7 +6,9 @@ public class GameManager : Singleton<GameManager>
     [Header("# Game Control")]
     public float gameTime;
     public float maxGameTime = 2 * 10f;
-    [Header ("# Player Inpo")]
+    [Header("# Player Inpo")]
+    public int hp;
+    public int maxHp = 100;
     public int level;
     public int kill;
     public int exp;
@@ -18,6 +20,11 @@ public class GameManager : Singleton<GameManager>
     protected override void Awake()
     {
         instance = this;
+    }
+
+    private void Start()
+    {
+        hp = maxHp;
     }
 
     private void Update()
