@@ -17,12 +17,12 @@ public class Spawner : MonoBehaviour
 
     private void Update()
     {
-        //if (!GameManager.instance.isLive)
-            //return;
+        if (!GameManager.instance.isLive)
+            return;
 
         timer += Time.deltaTime;
         level = Mathf.Min(Mathf.FloorToInt(GameManager.instance.gameTime / 10f), spawnData.Length - 1);
-        Debug.Log($"Level: {level}");
+        //Debug.Log($"Level: {level}");
         if (timer > spawnData[level].spawnTime)
         {
             timer = 0;
@@ -32,7 +32,7 @@ public class Spawner : MonoBehaviour
 
     private void Spawn()
     {
-        GameObject monster = GameManager.instance.pool.Get(0);
+        GameObject monster = GameScene.instance.pool.Get(0);
         monster.transform.position = spawnPoint[Random.Range(1, spawnPoint.Length)].position;
         monster.GetComponent<Monster>().Init(spawnData[level]);
     }

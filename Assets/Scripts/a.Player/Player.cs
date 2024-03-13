@@ -16,11 +16,23 @@ public class Player : MonoBehaviour
 
     private void Awake()
     {
-        // 교수님 파일과 비교했을 때 교수님은 사용X 골드메탈은 사용함.. (나는 탑다운이라 그런가?)
         rigid = GetComponent<Rigidbody2D>();
         sprite = GetComponent<SpriteRenderer>();
         animator = GetComponent<Animator>();
         scanner = GetComponent<Scanner>();
+    }
+
+    private void Update()
+    {
+        if (!GameManager.instance.isLive)
+            return;
+    }
+
+
+    private void Move()
+    {
+        Vector2 vector2 = moveDir * speed * Time.deltaTime;
+        rigid.MovePosition(rigid.position + vector2);
     }
 
     private void OnMove(InputValue value)
@@ -30,17 +42,16 @@ public class Player : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (!GameManager.instance.isLive)
+            return;
+
         Move();
     }
-
-    private void Move()
-    {
-        Vector2 vector2 = moveDir * speed * Time.deltaTime;
-        rigid.MovePosition(rigid.position + vector2);
-    }
-
     private void LateUpdate()
     {
+        if (!GameManager.instance.isLive)
+            return;
+
         animator.SetFloat("Speed", moveDir.magnitude);
 
         if (moveDir.x != 0)

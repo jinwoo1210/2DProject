@@ -33,6 +33,9 @@ public class Monster : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (!GameManager.instance.isLive)
+            return;
+
         if (!isLive || anim.GetCurrentAnimatorStateInfo(0).IsName("Hit"))
             return;
 
@@ -44,6 +47,9 @@ public class Monster : MonoBehaviour
 
     private void LateUpdate()
     {
+        if (!GameManager.instance.isLive)
+            return;
+
         if (!isLive)
             return;
 
@@ -52,7 +58,7 @@ public class Monster : MonoBehaviour
 
     private void OnEnable()
     {
-        target = GameManager.instance.player.GetComponent<Rigidbody2D>();
+        target = GameScene.instance.player.GetComponent<Rigidbody2D>();
         isLive = true;
         coll.enabled = true;
         rigid.simulated = true;
@@ -88,16 +94,16 @@ public class Monster : MonoBehaviour
             rigid.simulated = false;
             spriter.sortingOrder = 1;
             anim.SetBool("Dead", true);
-            GameManager.instance.kill++;
-            GameManager.instance.GetExp();
+            GameScene.instance.kill++;
+            GameScene.instance.GetExp();
         }
     }
 
     IEnumerator knockBack()
     {
-        Debug.Log("aaa");
+        //Debug.Log("aaa");
         yield return wait; // 하나의 물리 프레임을 딜레이
-        Vector3 playerPos = GameManager.instance.player.transform.position;
+        Vector3 playerPos = GameScene.instance.player.transform.position;
         Vector3 dirVec = transform.position - playerPos;
         rigid.AddForce(dirVec.normalized * 3, ForceMode2D.Impulse);
     }

@@ -13,11 +13,14 @@ public class Weapon : MonoBehaviour
 
     private void Awake()
     {
-        player = GameManager.instance.player;
+        player = GameScene.instance.player;
     }
 
     private void Update()
     {
+        if (!GameManager.instance.isLive)
+            return;
+
         switch (id)
         {
             case 0:
@@ -65,9 +68,9 @@ public class Weapon : MonoBehaviour
         damage = data.baseDamage;
         count = data.baseCount;
 
-        for (int i = 0; i < GameManager.instance.pool.prefabs.Length; i++)
+        for (int i = 0; i < GameScene.instance.pool.prefabs.Length; i++)
         {
-            if (data.projectile == GameManager.instance.pool.prefabs[i])
+            if (data.projectile == GameScene.instance.pool.prefabs[i])
             {
                 prefabId = i;
                 break;
@@ -98,7 +101,7 @@ public class Weapon : MonoBehaviour
             }
             else
             {
-                bullet = GameManager.instance.pool.Get(prefabId).transform;
+                bullet = GameScene.instance.pool.Get(prefabId).transform;
                 bullet.parent = transform;
             }
 
@@ -122,7 +125,7 @@ public class Weapon : MonoBehaviour
         dir = dir.normalized;
 
 
-        Transform bullet = GameManager.instance.pool.Get(prefabId).transform;
+        Transform bullet = GameScene.instance.pool.Get(prefabId).transform;
         bullet.position = transform.position;
         bullet.rotation = Quaternion.FromToRotation(Vector3.up, dir);
         bullet.GetComponent<Bullet>().Init(damage, count, dir);

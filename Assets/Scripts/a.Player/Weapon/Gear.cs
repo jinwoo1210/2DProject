@@ -11,7 +11,7 @@ public class Gear : MonoBehaviour
     {
         // Basic Set
         name = "Gear" + data.itemId;
-        transform.parent = GameManager.instance.player.transform;
+        transform.parent = GameScene.instance.player.transform;
         transform.localPosition = Vector3.zero;
         // Property Set
         type = data.itemType;
@@ -59,6 +59,6 @@ public class Gear : MonoBehaviour
     private void SpeedUp()
     {
         float speed = 1;
-        GameManager.instance.player.speed = speed + speed * rate;
+        GameScene.instance.player.speed = speed + speed * rate;
     }
 }

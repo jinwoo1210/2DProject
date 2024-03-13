@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using static Cinemachine.DocumentationSortingAttribute;
 
 public class HUD : MonoBehaviour
 {
@@ -22,15 +23,15 @@ public class HUD : MonoBehaviour
         switch (type)
         {
             case InfoType.Exp:
-                float curExp = GameManager.instance.exp;
-                float maxExp = GameManager.instance.nextExp[GameManager.instance.level];
+                float curExp = GameScene.instance.exp;
+                float maxExp = GameScene.instance.nextExp[Mathf.Min(GameScene.instance.level, GameScene.instance.nextExp.Length - 1)];
                 mySlider.value = curExp / maxExp;
                 break;
             case InfoType.level:
-                myText.text = string.Format("Lv.{0:F0}", GameManager.instance.level);
+                myText.text = string.Format("Lv.{0:F0}", GameScene.instance.level);
                 break;
             case InfoType.Kill:
-                myText.text = string.Format("{0:F0}", GameManager.instance.kill);
+                myText.text = string.Format("{0:F0}", GameScene.instance.kill);
 
                 break;
             case InfoType.Time:
@@ -41,8 +42,8 @@ public class HUD : MonoBehaviour
                 
                 break;
             case InfoType.Hp:
-                float curHp = GameManager.instance.hp;
-                float maxHp = GameManager.instance.maxHp;
+                float curHp = GameScene.instance.hp;
+                float maxHp = GameScene.instance.maxHp;
                 mySlider.value = curHp / maxHp;
                 break;
         }
