@@ -4,31 +4,19 @@ public class GameManager : Singleton<GameManager>
 {
     public static GameManager instance;
     [Header("# Game Control")]
+    public bool isLive;
     public float gameTime;
     public float maxGameTime = 2 * 10f;
-    [Header("# Player Inpo")]
-    public int hp;
-    public int maxHp = 100;
-    public int level;
-    public int kill;
-    public int exp;
-    public int[] nextExp = { 3, 5, 10, 70, 130, 190, 290, 420, 600, 800};
-    [Header ("# Game Object")]
-    public PoolManager pool;
-    public Player player;
 
     protected override void Awake()
     {
         instance = this;
     }
 
-    private void Start()
-    {
-        hp = maxHp;
-    }
-
     private void Update()
     {
+        if (!isLive)
+            return;
         gameTime += Time.deltaTime;
 
         if (gameTime > maxGameTime)
@@ -37,14 +25,15 @@ public class GameManager : Singleton<GameManager>
         }
     }
 
-    public void GetExp()
+    public void Stop()
     {
-        exp++;
+        isLive = false;
+        Time.timeScale = 0;
+    }
 
-        if (exp == nextExp[level])
-        {
-            level++;
-            exp = 0;
-        }
+    public void Resume()
+    {
+        isLive = true;
+        Time.timeScale = 1;
     }
 }
