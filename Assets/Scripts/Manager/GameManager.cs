@@ -6,6 +6,7 @@ public class GameManager : Singleton<GameManager>
 
     [Header("# Game Object")]
     public Player player;
+    public GameObject uiResult;
 
     [Header ("Game Times")]
     public bool isLive;

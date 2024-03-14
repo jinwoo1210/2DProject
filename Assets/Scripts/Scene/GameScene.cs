@@ -11,8 +11,8 @@ public class GameScene : BaseScene
     public static GameScene instance;
 
     [Header("# Player Inpo")]
-    public int hp;
-    public int maxHp = 100;
+    public float hp;
+    public float maxHp = 100;
     public int level;
     public int kill;
     public int exp;
@@ -31,6 +31,27 @@ public class GameScene : BaseScene
         hp = maxHp;
         uiLvevlUp.Select(0);  // 임시 스크립트 (첫번째 캐릭터 선택)
         GameManager.instance.isLive = true;
+    }
+
+    public void GameOver()
+    {
+        StartCoroutine(GameOverRoutine());
+    }
+
+    IEnumerator GameOverRoutine()
+    {
+        GameManager.instance.isLive = false;
+
+        yield return new WaitForSeconds(0.5f);
+
+        GameManager.instance.uiResult.SetActive(true);
+        GameManager.instance.Stop();
+    }
+
+
+    public void GameRetry()
+    {
+        Manager.Scene.LoadScene("GameScene");
     }
 
     public void GetExp()

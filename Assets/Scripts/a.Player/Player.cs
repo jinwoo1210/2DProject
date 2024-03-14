@@ -10,8 +10,8 @@ public class Player : MonoBehaviour
     public Scanner scanner;
 
     public Vector2 moveDir;
-    SpriteRenderer sprite;
-    Animator animator;
+    private SpriteRenderer sprite;
+    private Animator animator;
 
 
     private void Awake()
@@ -57,6 +57,25 @@ public class Player : MonoBehaviour
         if (moveDir.x != 0)
         {
             sprite.flipX = moveDir.x < 0;
+        }
+    }
+
+    private void OnCollisionStay2D(Collision2D collision)
+    {
+        if (!GameManager.instance.isLive)
+            return;
+
+        GameScene.instance.hp -= Time.deltaTime * 10;
+
+        if (GameScene.instance.hp < 0)
+        {
+            for (int i = 2; i < transform.childCount; i++)
+            {
+                transform.GetChild(i).gameObject.SetActive(false);
+            }
+
+            animator.SetTrigger("Dead");
+            GameScene.instance.GameOver();
         }
     }
 }
