@@ -13,7 +13,7 @@ public class Weapon : MonoBehaviour
 
     private void Awake()
     {
-        player = GameScene.instance.player;
+        player = GameObject.FindWithTag("Player").GetComponent<Player>();
     }
 
     private void Update()
@@ -68,9 +68,9 @@ public class Weapon : MonoBehaviour
         damage = data.baseDamage;
         count = data.baseCount;
 
-        for (int i = 0; i < GameScene.instance.pool.prefabs.Length; i++)
+        for (int i = 0; i < PoolManager.Instance.prefabs.Length; i++)
         {
-            if (data.projectile == GameScene.instance.pool.prefabs[i])
+            if (data.projectile == PoolManager.Instance.prefabs[i])
             {
                 prefabId = i;
                 break;
@@ -101,7 +101,7 @@ public class Weapon : MonoBehaviour
             }
             else
             {
-                bullet = GameScene.instance.pool.Get(prefabId).transform;
+                bullet = PoolManager.Instance.Get(prefabId).transform;
                 bullet.parent = transform;
             }
 
@@ -125,7 +125,7 @@ public class Weapon : MonoBehaviour
         dir = dir.normalized;
 
 
-        Transform bullet = GameScene.instance.pool.Get(prefabId).transform;
+        Transform bullet = PoolManager.Instance.Get(prefabId).transform;
         bullet.position = transform.position;
         bullet.rotation = Quaternion.FromToRotation(Vector3.up, dir);
         bullet.GetComponent<Bullet>().Init(damage, count, dir);

@@ -32,7 +32,7 @@ public class Spawner : MonoBehaviour
 
     private void Spawn()
     {
-        GameObject monster = GameScene.instance.pool.Get(0);
+        GameObject monster = PoolManager.Instance.Get(0);
         monster.transform.position = spawnPoint[Random.Range(1, spawnPoint.Length)].position;
         monster.GetComponent<Monster>().Init(spawnData[level]);
     }

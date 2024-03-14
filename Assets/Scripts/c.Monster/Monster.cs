@@ -58,7 +58,7 @@ public class Monster : MonoBehaviour
 
     private void OnEnable()
     {
-        target = GameScene.instance.player.GetComponent<Rigidbody2D>();
+        target = GameManager.instance.player.GetComponent<Rigidbody2D>();
         isLive = true;
         coll.enabled = true;
         rigid.simulated = true;
@@ -103,7 +103,7 @@ public class Monster : MonoBehaviour
     {
         //Debug.Log("aaa");
         yield return wait; // 하나의 물리 프레임을 딜레이
-        Vector3 playerPos = GameScene.instance.player.transform.position;
+        Vector3 playerPos = GameManager.instance.player.transform.position;
         Vector3 dirVec = transform.position - playerPos;
         rigid.AddForce(dirVec.normalized * 3, ForceMode2D.Impulse);
     }

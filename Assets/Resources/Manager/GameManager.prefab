@@ -44,6 +44,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d4fcfa33b2f5d5e47b5fc920f8e1da03, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pool: {fileID: 2995418285144130944, guid: cace777b83436a0418dad58d4b1de42d, type: 3}
+  player: {fileID: 3937662700411456060, guid: a4d1fe6765cfb084995f49478ba16403, type: 3}
   isLive: 1
   gameTime: 0
   maxGameTime: 20
