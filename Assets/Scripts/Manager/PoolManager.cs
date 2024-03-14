@@ -10,6 +10,8 @@ public class PoolManager : Singleton<PoolManager>
 
     protected override void Awake()
     {
+        base.Awake();
+
         pools = new List<GameObject>[prefabs.Length];
 
         for(int i = 0; i < pools.Length; i++)
@@ -17,7 +19,7 @@ public class PoolManager : Singleton<PoolManager>
             pools[i] = new List<GameObject>();
         }
 
-        //Debug.Log(pools.Length);
+        Debug.Log(pools.Length);
     }
 
     public GameObject Get(int i)    // Get 함수 생성

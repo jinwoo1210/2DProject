@@ -13,17 +13,17 @@ public static class Manager
     [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
     private static void Initialize()
     {
-        GameManager.ReleaseInstance();
+        //GameManager.ReleaseInstance();
         DataManager.ReleaseInstance();
-        PoolManager.ReleaseInstance();
+        //PoolManager.ReleaseInstance();
         ResourceManager.ReleaseInstance();
         SceneManager.ReleaseInstance();
         SoundManager.ReleaseInstance();
         UIManager.ReleaseInstance();
 
-        GameManager.CreateInstance();
+        //GameManager.CreateInstance();
         DataManager.CreateInstance();
-        PoolManager.CreateInstance();
+        //PoolManager.CreateInstance();
         ResourceManager.CreateInstance();
         SceneManager.CreateInstance();
         SoundManager.CreateInstance();
