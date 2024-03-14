@@ -31,7 +31,7 @@ public class GameScene : BaseScene
         hp = maxHp;
 
         // 임시 스크립트 (첫번째 캐릭터 선택)
-        Debug.Log(uiLvevlUp);
+        //Debug.Log(uiLvevlUp);
         uiLvevlUp.Select(0);
     }
 
