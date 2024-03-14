@@ -26,13 +26,11 @@ public class GameScene : BaseScene
         instance = this;
     }
 
-    private void Start()
+    public void GameStart()
     {
         hp = maxHp;
-
-        // 임시 스크립트 (첫번째 캐릭터 선택)
-        //Debug.Log(uiLvevlUp);
-        uiLvevlUp.Select(0);
+        uiLvevlUp.Select(0);  // 임시 스크립트 (첫번째 캐릭터 선택)
+        GameManager.instance.isLive = true;
     }
 
     public void GetExp()

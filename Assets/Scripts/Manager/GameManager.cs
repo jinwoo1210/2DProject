@@ -21,6 +21,7 @@ public class GameManager : Singleton<GameManager>
     {
         if (!isLive)
             return;
+
         gameTime += Time.deltaTime;
 
         if (gameTime > maxGameTime)
