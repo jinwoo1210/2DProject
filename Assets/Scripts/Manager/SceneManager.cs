@@ -37,7 +37,9 @@ public class SceneManager : Singleton<SceneManager>
     IEnumerator LoadingRoutine(string sceneName)
     {
         fade.gameObject.SetActive(true);
-        yield return FadeOut();
+        //yield return FadeOut();
+
+        yield return null;
 
         //Manager.Pool.ClearPool();
         Manager.Sound.StopSFX();

@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class GameScene : BaseScene
@@ -8,9 +7,11 @@ public class GameScene : BaseScene
     {
         yield return null;
     }
+
     public static GameScene instance;
 
     [Header("# Player Inpo")]
+    public int playerId;
     public float hp;
     public float maxHp = 100;
     public int level;
@@ -20,17 +21,25 @@ public class GameScene : BaseScene
     [Header("# Game Control")]
     public int[] nextExp = { 3, 5, 10, 70, 130, 190, 290, 420, 600, 800 };
     public LevelUp uiLvevlUp;
+    public GameObject monsterCleaner;
 
     protected void Awake()
     {
         instance = this;
     }
 
-    public void GameStart()
+    public void GameStart(int id)
     {
+        playerId = id;
         hp = maxHp;
-        uiLvevlUp.Select(0);  // 임시 스크립트 (첫번째 캐릭터 선택)
-        GameManager.instance.isLive = true;
+        GameManager.instance.player.gameObject.SetActive(true);
+        uiLvevlUp.Select(playerId % 3);
+        GameManager.instance.Resume();
+    }
+
+    public void GameRetry()
+    {
+        Manager.Scene.LoadScene("GameScene");
     }
 
     public void GameOver()
@@ -44,18 +53,33 @@ public class GameScene : BaseScene
 
         yield return new WaitForSeconds(0.5f);
 
-        GameManager.instance.uiResult.SetActive(true);
+        GameManager.instance.uiResult.gameObject.SetActive(true);
+        GameManager.instance.uiResult.Lose();
         GameManager.instance.Stop();
     }
 
-
-    public void GameRetry()
+    public void GameVictory()
     {
-        Manager.Scene.LoadScene("GameScene");
+        StartCoroutine(GameVictoryRoutine());
+    }
+
+    IEnumerator GameVictoryRoutine()
+    {
+        GameManager.instance.isLive = false;
+        monsterCleaner.SetActive(true);
+
+        yield return new WaitForSeconds(1f);
+
+        GameManager.instance.uiResult.gameObject.SetActive(true);
+        GameManager.instance.uiResult.Win();
+        GameManager.instance.Stop();
     }
 
     public void GetExp()
     {
+        if (!GameManager.instance.isLive)       // 게임 승리시 몬스터가 죽어서 레벨업이 되는 상황을 방지하는 코드
+            return;
+
         exp++;
 
         if (exp == nextExp[Mathf.Min(level, nextExp.Length - 1)])

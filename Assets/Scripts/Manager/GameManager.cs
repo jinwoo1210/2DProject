@@ -6,7 +6,7 @@ public class GameManager : Singleton<GameManager>
 
     [Header("# Game Object")]
     public Player player;
-    public GameObject uiResult;
+    public Result uiResult;
 
     [Header ("Game Times")]
     public bool isLive;
@@ -28,6 +28,7 @@ public class GameManager : Singleton<GameManager>
         if (gameTime > maxGameTime)
         {
             gameTime = maxGameTime;
+            GameScene.instance.GameVictory();
         }
     }
 
