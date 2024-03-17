@@ -7,13 +7,17 @@ public class AchiveManager : MonoBehaviour
 {
     public GameObject[] lockCharactor;
     public GameObject[] unlockCharactor;
+    public GameObject uiNotice;
 
     private enum Achive { UnlockAssassin, UnlockMagition }
     Achive[] achives;
+    WaitForSecondsRealtime wait;
+
 
     private void Awake()
     {
         achives = (Achive[])Enum.GetValues(typeof(Achive));
+        wait = new WaitForSecondsRealtime(5);
 
         if (!PlayerPrefs.HasKey("MyData"))
         {
@@ -72,6 +76,23 @@ public class AchiveManager : MonoBehaviour
         if (isAchive && PlayerPrefs.GetInt(achive.ToString()) == 0) // 해금이 안된 상태일때
         {
             PlayerPrefs.SetInt(achive.ToString(), 1);
+
+            for(int i = 0; i < uiNotice.transform.childCount; i++)
+            {
+                bool isActive = i == (int)achive;
+                uiNotice.transform.GetChild(i).gameObject.SetActive(isActive);
+            }
+
+            StartCoroutine(NoticeRoutine());
         }
+    }
+
+    IEnumerator NoticeRoutine()
+    {
+        uiNotice.SetActive(true);
+
+        yield return wait;
+
+        uiNotice.SetActive(false);
     }
 }
