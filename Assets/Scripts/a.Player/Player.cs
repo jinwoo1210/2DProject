@@ -8,6 +8,8 @@ public class Player : MonoBehaviour
     [SerializeField] Rigidbody2D rigid;
     public float speed;
     public Scanner scanner;
+    public RuntimeAnimatorController[] animCon;
+
 
     public Vector2 moveDir;
     private SpriteRenderer sprite;
@@ -20,6 +22,12 @@ public class Player : MonoBehaviour
         sprite = GetComponent<SpriteRenderer>();
         animator = GetComponent<Animator>();
         scanner = GetComponent<Scanner>();
+    }
+
+    private void OnEnable()
+    {
+        speed *= Character.Speed;
+        animator.runtimeAnimatorController = animCon[GameScene.instance.playerId];
     }
 
     private void Update()

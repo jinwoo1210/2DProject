@@ -11281,12 +11281,12 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 1222749826}
         m_TargetAssemblyTypeName: GameScene, Assembly-CSharp
-        m_MethodName: GameRetry
-        m_Mode: 1
+        m_MethodName: GameStart
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
+          m_IntArgument: 1
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 1
@@ -16770,12 +16770,12 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 1222749826}
         m_TargetAssemblyTypeName: GameScene, Assembly-CSharp
-        m_MethodName: GameRetry
-        m_Mode: 1
+        m_MethodName: GameStart
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
+          m_IntArgument: 2
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 1
@@ -16881,7 +16881,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1583411162}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
   m_Name: 
@@ -16944,7 +16944,7 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 1222749826}
         m_TargetAssemblyTypeName: GameScene, Assembly-CSharp
-        m_MethodName: GameRetry
+        m_MethodName: 
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -17119,8 +17119,8 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 1222749826}
         m_TargetAssemblyTypeName: GameScene, Assembly-CSharp
-        m_MethodName: GameRetry
-        m_Mode: 1
+        m_MethodName: GameStart
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -22097,6 +22097,7 @@ MonoBehaviour:
   prefabs:
   - {fileID: 8679956042200039054, guid: fc49216e43613d040bafa5b890950734, type: 3}
   - {fileID: 6808097401831378134, guid: aad4806c911f87c4e85301d9fad76b4a, type: 3}
+  - {fileID: 584708451889542540, guid: 64aa2d35a87b6cb4181fa35b428d40ec, type: 3}
   - {fileID: 584708451889542540, guid: 20352549bcc182b49b5edfb75ed0ee6a, type: 3}
 --- !u!1 &1998164891
 GameObject:
@@ -22665,6 +22666,22 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3937662700411456060, guid: a4d1fe6765cfb084995f49478ba16403, type: 3}
+      propertyPath: animCon.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3937662700411456060, guid: a4d1fe6765cfb084995f49478ba16403, type: 3}
+      propertyPath: animCon.Array.data[0]
+      value: 
+      objectReference: {fileID: 9100000, guid: 733e50cacb32c3d46bb6127bfbe92053, type: 2}
+    - target: {fileID: 3937662700411456060, guid: a4d1fe6765cfb084995f49478ba16403, type: 3}
+      propertyPath: animCon.Array.data[1]
+      value: 
+      objectReference: {fileID: 9100000, guid: fab2bba54e41b184da3d99948bd1b594, type: 2}
+    - target: {fileID: 3937662700411456060, guid: a4d1fe6765cfb084995f49478ba16403, type: 3}
+      propertyPath: animCon.Array.data[2]
+      value: 
+      objectReference: {fileID: 9100000, guid: b775b0f11d3b4e342b8ae81ffdc7dbf6, type: 2}
     - target: {fileID: 7706483517013359174, guid: a4d1fe6765cfb084995f49478ba16403, type: 3}
       propertyPath: m_Name
       value: Player
