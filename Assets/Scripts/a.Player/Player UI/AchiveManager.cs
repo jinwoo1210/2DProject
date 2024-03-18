@@ -90,6 +90,7 @@ public class AchiveManager : MonoBehaviour
     IEnumerator NoticeRoutine()
     {
         uiNotice.SetActive(true);
+        SoundManager.Instance.PlaySfx(SoundManager.Sfx.Achive);
 
         yield return wait;
 

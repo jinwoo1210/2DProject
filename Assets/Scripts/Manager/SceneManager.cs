@@ -42,7 +42,7 @@ public class SceneManager : Singleton<SceneManager>
         yield return null;
 
         //Manager.Pool.ClearPool();
-        Manager.Sound.StopSFX();
+        //Manager.Sound.StopSFX();
         Manager.UI.ClearPopUpUI();
         Manager.UI.ClearWindowUI();
         Manager.UI.CloseInGameUI();

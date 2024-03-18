@@ -35,11 +35,15 @@ public class GameScene : BaseScene
         GameManager.instance.player.gameObject.SetActive(true);
         uiLvevlUp.Select(playerId % 3);
         GameManager.instance.Resume();
+
+        SoundManager.Instance.PlayBgm(true);
+        SoundManager.Instance.PlaySfx(SoundManager.Sfx.Button);
     }
 
     public void GameRetry()
     {
         Manager.Scene.LoadScene("GameScene");
+        SoundManager.Instance.PlaySfx(SoundManager.Sfx.Button);
     }
 
     public void GameOver()
@@ -56,6 +60,10 @@ public class GameScene : BaseScene
         GameManager.instance.uiResult.gameObject.SetActive(true);
         GameManager.instance.uiResult.Lose();
         GameManager.instance.Stop();
+
+        SoundManager.Instance.PlayBgm(false);
+        SoundManager.Instance.PlaySfx(SoundManager.Sfx.Lose);
+        SoundManager.Instance.PlaySfx(SoundManager.Sfx.Haha);
     }
 
     public void GameVictory()
@@ -73,6 +81,10 @@ public class GameScene : BaseScene
         GameManager.instance.uiResult.gameObject.SetActive(true);
         GameManager.instance.uiResult.Win();
         GameManager.instance.Stop();
+
+        SoundManager.Instance.PlayBgm(false);
+        SoundManager.Instance.PlaySfx(SoundManager.Sfx.Win);
+        SoundManager.Instance.PlaySfx(SoundManager.Sfx.Cheers);
     }
 
     public void GetExp()

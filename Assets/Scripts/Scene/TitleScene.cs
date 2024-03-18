@@ -10,10 +10,16 @@ public class TitleScene : BaseScene
         Manager.Scene.LoadScene("GameScene");
     }
 
+    private void Start()
+    {
+        SoundManager.Instance.PlaySfx(SoundManager.Sfx.TitleIntro);
+    }
+
     private void Update()
     {
         if (Input.anyKey && !isbutton)
         {
+            SoundManager.Instance.PlaySfx(SoundManager.Sfx.Button);
             GameSceneLoad();
             isbutton = true;
         }

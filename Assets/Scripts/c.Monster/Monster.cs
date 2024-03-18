@@ -86,6 +86,7 @@ public class Monster : MonoBehaviour
         if (hp > 0)
         {
             anim.SetTrigger("Hit");
+            SoundManager.Instance.PlaySfx(SoundManager.Sfx.Hit);
         }
         else
         {
@@ -96,6 +97,8 @@ public class Monster : MonoBehaviour
             anim.SetBool("Dead", true);
             GameScene.instance.kill++;
             GameScene.instance.GetExp();
+            if (GameManager.instance.isLive)
+            SoundManager.Instance.PlaySfx(SoundManager.Sfx.MonsterDead);
         }
     }
 
