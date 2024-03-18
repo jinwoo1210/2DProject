@@ -76,7 +76,7 @@ public class GameScene : BaseScene
         GameManager.instance.isLive = false;
         monsterCleaner.SetActive(true);
 
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(1.5f);
 
         GameManager.instance.uiResult.gameObject.SetActive(true);
         GameManager.instance.uiResult.Win();
