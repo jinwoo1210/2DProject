@@ -61,7 +61,7 @@ public class LevelUp : MonoBehaviour
             // 3. 만렙 아이템 경우 소비아이템으로 대체
             if (randItem.level == randItem.data.damages.Length)
             {
-                items[4].gameObject.SetActive(true);
+                items[5].gameObject.SetActive(true);
             }
             else
             {
