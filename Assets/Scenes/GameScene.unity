@@ -24394,7 +24394,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3342480949768026016, guid: a4d1fe6765cfb084995f49478ba16403, type: 3}
       propertyPath: spawnData.Array.data[3].spawnTime
-      value: 55
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 3937662700411456060, guid: a4d1fe6765cfb084995f49478ba16403, type: 3}
       propertyPath: animCon.Array.size

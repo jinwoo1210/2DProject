@@ -49,6 +49,7 @@ public class SoundManager : Singleton<SoundManager>
 
         for (int i = 0; i < sfxPlayers.Length; i++)
         {
+            
             sfxPlayers[i] = sfxObject.AddComponent<AudioSource>();
             sfxPlayers[i].playOnAwake = false;
             sfxPlayers[i].bypassListenerEffects = true;
@@ -90,6 +91,12 @@ public class SoundManager : Singleton<SoundManager>
 
             channelIndex = loopIndex;
             sfxPlayers[loopIndex].clip = sfxClips[(int)sfx + randI];
+            //Test
+            if (sfxPlayers[loopIndex].clip.name == "TitleIntro")
+            {
+
+                sfxPlayers[loopIndex].volume = 0.6f;
+            }
             sfxPlayers[loopIndex].Play();
             break;
             
