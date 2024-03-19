@@ -11,7 +11,7 @@ public class GameManager : Singleton<GameManager>
     [Header ("Game Times")]
     public bool isLive;
     public float gameTime;
-    public float maxGameTime = 7 * 10f;
+    public float maxGameTime = 180f;
 
     protected override void Awake()
     {

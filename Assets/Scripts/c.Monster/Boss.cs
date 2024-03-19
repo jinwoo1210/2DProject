@@ -1,13 +1,9 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.InputSystem.Processors;
 using static Spawner;
-using static BossSpawner;
 
-public class Monster : MonoBehaviour
+public class Boss : MonoBehaviour
 {
     public float speed;
     public float hp;
@@ -76,15 +72,6 @@ public class Monster : MonoBehaviour
         hp = data.hp;
     }
 
-    public void Init(SpawnDataBoss data)
-    {
-        anim.runtimeAnimatorController = animCon[data.spriteType];
-        speed = data.speed;
-        maxHp = data.hp;
-        hp = data.hp;
-    }
-
-
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (!collision.CompareTag("Bullet") || !isLive)
@@ -108,7 +95,7 @@ public class Monster : MonoBehaviour
             GameScene.instance.kill++;
             GameScene.instance.GetExp();
             if (GameManager.instance.isLive)
-            SoundManager.Instance.PlaySfx(SoundManager.Sfx.MonsterDead);
+                SoundManager.Instance.PlaySfx(SoundManager.Sfx.MonsterDead);
         }
     }
 
@@ -118,13 +105,12 @@ public class Monster : MonoBehaviour
         yield return wait; // 하나의 물리 프레임을 딜레이
         Vector3 playerPos = GameManager.instance.player.transform.position;
         Vector3 dirVec = transform.position - playerPos;
-        rigid.AddForce(dirVec.normalized * 3, ForceMode2D.Impulse);
+        rigid.AddForce(dirVec.normalized * 1, ForceMode2D.Impulse);
     }
 
     private void Dead()
     {
         gameObject.SetActive(false);
-        
-    }
 
+    }
 }

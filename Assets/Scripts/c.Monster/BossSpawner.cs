@@ -2,10 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Spawner : MonoBehaviour
+public class BossSpawner : MonoBehaviour
 {
     public Transform[] spawnPoint;
-    public SpawnData[] spawnData;
+    public SpawnDataBoss[] spawnData;
 
     private int level;
     private float timer;
@@ -21,7 +21,7 @@ public class Spawner : MonoBehaviour
             return;
 
         timer += Time.deltaTime;
-        level = Mathf.Min(Mathf.FloorToInt(GameManager.instance.gameTime / 15f), spawnData.Length - 1);
+        level = Mathf.Min(Mathf.FloorToInt(GameManager.instance.gameTime / 30f), spawnData.Length - 1);
         //Debug.Log($"Level: {level}");
         if (timer > spawnData[level].spawnTime)
         {
@@ -32,13 +32,13 @@ public class Spawner : MonoBehaviour
 
     private void Spawn()
     {
-        GameObject monster = PoolManager.Instance.Get(0);
-        monster.transform.position = spawnPoint[Random.Range(1, spawnPoint.Length)].position;
-        monster.GetComponent<Monster>().Init(spawnData[level]);
+        GameObject boss = PoolManager.Instance.Get(4);
+        boss.transform.position = spawnPoint[Random.Range(0, spawnPoint.Length)].position;
+        boss.GetComponent<Monster>().Init(spawnData[level]);
     }
 
     [System.Serializable]
-    public class SpawnData
+    public class SpawnDataBoss
     {
         public float spawnTime;
         public int spriteType;
