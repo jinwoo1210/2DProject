@@ -5,7 +5,6 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem.Processors;
 using static Spawner;
-using static BossSpawner;
 
 public class Monster : MonoBehaviour
 {
@@ -69,14 +68,6 @@ public class Monster : MonoBehaviour
     }
 
     public void Init(SpawnData data)
-    {
-        anim.runtimeAnimatorController = animCon[data.spriteType];
-        speed = data.speed;
-        maxHp = data.hp;
-        hp = data.hp;
-    }
-
-    public void Init(SpawnDataBoss data)
     {
         anim.runtimeAnimatorController = animCon[data.spriteType];
         speed = data.speed;

@@ -1,7 +1,6 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using static Spawner;
+using static BossSpawner;
 
 public class Boss : MonoBehaviour
 {
@@ -64,12 +63,25 @@ public class Boss : MonoBehaviour
         hp = maxHp;
     }
 
-    public void Init(SpawnData data)
+    public void Init(SpawnDataBoss data)
     {
-        anim.runtimeAnimatorController = animCon[data.spriteType];
-        speed = data.speed;
-        maxHp = data.hp;
-        hp = data.hp;
+        if (data != null)
+        {
+            Debug.Log(anim);
+            Debug.Log(anim.runtimeAnimatorController);
+            Debug.Log(data);
+            Debug.Log(data.spriteType);
+            Debug.Log(animCon);
+            anim.runtimeAnimatorController = animCon[data.spriteType];
+            speed = data.speed;
+            maxHp = data.hp;
+            hp = data.hp;
+        }
+        else
+        {
+            Debug.LogError("SpawnDataBoss가 null 입니다.");
+        }
+
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

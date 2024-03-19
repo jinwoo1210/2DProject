@@ -33,8 +33,8 @@ public class BossSpawner : MonoBehaviour
     private void Spawn()
     {
         GameObject boss = PoolManager.Instance.Get(4);
-        boss.transform.position = spawnPoint[Random.Range(0, spawnPoint.Length)].position;
-        boss.GetComponent<Monster>().Init(spawnData[level]);
+        boss.transform.position = spawnPoint[Random.Range(1, spawnPoint.Length)].position;
+        boss.GetComponent<Boss>().Init(spawnData[level]);
     }
 
     [System.Serializable]
